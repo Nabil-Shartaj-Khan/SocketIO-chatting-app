@@ -5,6 +5,9 @@ import './App.css'
 import Home from './components/Home/Home'
 import Login from './components/Login/Login'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Register from './components/Register/Register'
+import CreateRoom from './components/ChatRoom/CreateRoom'
+import ShowChat from './components/ChatRoom/ShowChat'
 
 function App() {
 
@@ -15,6 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/sign-in" element={<Register />} />
+          <Route path="/create-room" element={<CreateRoom />} />
+          <Route path="/show-chat" element={<ShowChat />} />
         </Routes>
       </BrowserRouter>
     </>

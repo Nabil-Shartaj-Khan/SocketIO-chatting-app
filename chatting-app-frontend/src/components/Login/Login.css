@@ -1,0 +1,37 @@
+h1{
+    font-family: "Noto Serif",sans-serif;
+}
+label{
+    font-family: "Roboto",sans-serif;
+}
+
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container div {
+    margin-bottom: 15px;
+}
+
+.login-container label {
+    margin-right: 10px;
+    font-weight: bold;
+    color:slategray;
+
+}
+
+.login-container input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-button-container{
+    margin-top: 50px;
+}
+
