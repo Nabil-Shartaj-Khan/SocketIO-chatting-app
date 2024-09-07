@@ -1,20 +1,23 @@
-const User = require("../models/User");
+const UserService = require("../services/UserServices");
 
-const register = (req, res) => {
+const register = async (req, res) => {
   const { name, email, password } = req.body;
 
-  User.findByEmail(email, (err, results) => {
-    if (err) throw err;
+  try {
+    // Check if user already exists
+    const existingUser = await UserService.findByEmail(email);
 
-    if (results.length > 0) {
+    if (existingUser) {
       return res.status(400).json({ message: "Email already exists" });
     }
 
-    User.create(name, email, password, (err, result) => {
-      if (err) throw err;
-      res.status(201).json({ message: "User registered successfully" });
-    });
-  });
+    await UserService.createUser(name, email, password);
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error registering user: ${error.message}` });
+  }
 };
 
 module.exports = {

@@ -1,19 +1,30 @@
-const db = require("../config/db");
-const bcrypt = require("bcryptjs");
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/sequelize");
 
-const User = {
-  createUser: (name, email, password, callback) => {
-    const salt = bcrypt.genSaltSync(10);
-    const hashedPassword = bcrypt.hashSync(password, salt);
-
-    const query = `INSERT INTO users (name, email, password) VALUES (?, ?, ?)`;
-    db.query(query, [name, email, hashedPassword], callback);
+const User = sequelize.define(
+  "User",
+  {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
+  {
+    timestamps: true,
+  }
+);
 
-  findByEmail: (email, callback) => {
-    const query = `SELECT * FROM users WHERE email = ?`;
-    db.query(query, [email], callback);
-  },
-};
+User.sync()
+  .then(() => console.log("User table created or updated"))
+  .catch((error) => console.error("Error creating table:", error));
 
 module.exports = User;

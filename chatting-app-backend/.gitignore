@@ -9,3 +9,11 @@ build/
 
 # Ignore environment variables file
 .env
+
+# Ignore test coverage reports
+coverage/
+
+# Ignore debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
