@@ -4,7 +4,6 @@ const register = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    // Check if user already exists
     const existingUser = await UserService.findByEmail(email);
 
     if (existingUser) {
