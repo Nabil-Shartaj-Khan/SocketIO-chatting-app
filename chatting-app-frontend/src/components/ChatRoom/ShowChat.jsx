@@ -1,10 +1,20 @@
 import "./Chat.css";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ShowChat = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { roomName } = location.state || {};
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login?message=Logged out successfully");
+    };
+
     return (
         <div className="show-chat-container">
             <div className="sidebar">
-                <h4>Room Name: <span className="fs-4 text-success">Sample Room</span></h4>
+                <h4>Room Name: <span className="fs-4 text-success">{roomName || "Default Room"}</span></h4>
                 <div className="user-lists">
                     <h5>Members:</h5>
                     <ul>
@@ -12,7 +22,12 @@ const ShowChat = () => {
                         <li>Jane Smith</li>
                         <li>Emily Johnson</li>
                     </ul>
-                    <button className="btn btn-danger logout-button">Logout</button>
+                    <button
+                        className="btn btn-danger logout-button"
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
             <div className="messages">
@@ -24,8 +39,6 @@ const ShowChat = () => {
                     <span className="ms-1 fw-bold mb-2 text-dark">User49</span>
                     <p>Hi there! How's it going?</p>
                 </div>
-
-
                 <div className="input-container">
                     <input type="text" placeholder="Type your message here..." />
                     <button>Send</button>
