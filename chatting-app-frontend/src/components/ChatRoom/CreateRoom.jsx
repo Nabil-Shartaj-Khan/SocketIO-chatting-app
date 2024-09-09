@@ -16,7 +16,7 @@ const CreateRoom = () => {
             <h1 className="text-success">Welcome to the party</h1>
             <span className=" fw-bold mt-4">If you leave the name empty, it will be automatically set to ‘Default’.</span>
             <input
-                placeholder="Create a room..."
+                placeholder="One time room name..."
                 className="text-center"
                 value={roomName}
                 onChange={handleInputChange}

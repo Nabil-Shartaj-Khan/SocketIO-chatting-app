@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../Login/Login.css";
 
 const Register = () => {
+
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
